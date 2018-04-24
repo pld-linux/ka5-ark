@@ -1,14 +1,15 @@
-%define		kdeappsver	17.08.2
+%define		kdeappsver	18.04.0
 %define		qtver		5.3.2
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	17.08.2
+Version:	18.04.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	cdd71c6c6e0781778afe3248e333535b
+# Source0-md5:	08c0d389041ac428dce7700a5c3b41fe
+Patch0:		unique_ptr.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	bzip2-devel
@@ -31,6 +32,7 @@ modify archives.
 
 %prep
 %setup -q -n %{kaname}-%{version}
+%patch0 -p1
 
 %build
 install -d build
@@ -57,8 +59,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 /etc/xdg/ark.categories
 %attr(755,root,root) %{_bindir}/ark
-%attr(755,root,root) %ghost %{_libdir}/libkerfuffle.so.17
-%attr(755,root,root) %{_libdir}/libkerfuffle.so.*.*.*
+%ghost %{_libdir}/libkerfuffle.so.18
+%{_libdir}/libkerfuffle.so.18.*.*
 %{_libdir}/qt5/plugins/arkpart.so
 %dir %{_libdir}/qt5/plugins/kerfuffle
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_cli7z.so
@@ -70,6 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libbz2.so
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libgz.so
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libxz.so
+%{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libzip.so
 %{_libdir}/qt5/plugins/kf5/kfileitemaction/compressfileitemaction.so
 %{_libdir}/qt5/plugins/kf5/kfileitemaction/extractfileitemaction.so
 %{_libdir}/qt5/plugins/kf5/kio_dnd/extracthere.so
@@ -82,21 +85,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservices5/ark_part.desktop
 %{_datadir}/kservicetypes5/kerfufflePlugin.desktop
 %dir %{_datadir}/kxmlgui5/ark
-%{_datadir}/kxmlgui5/ark/ark_part.rc
 %{_datadir}/kxmlgui5/ark/ark_viewer.rc
-%{_datadir}/kxmlgui5/ark/arkui.rc
-%lang(ca) %{_mandir}/ca/man1/ark.1*
-%lang(de) %{_mandir}/de/man1/ark.1*
-%lang(es) %{_mandir}/es/man1/ark.1*
-%lang(fr) %{_mandir}/fr/man1/ark.1*
-%lang(gl) %{_mandir}/gl/man1/ark.1*
-%lang(it) %{_mandir}/it/man1/ark.1*
-%{_mandir}/man1/ark.1*
-%lang(nl) %{_mandir}/nl/man1/ark.1*
-%lang(pt) %{_mandir}/pt/man1/ark.1*
-%lang(pt_BR) %{_mandir}/pt_BR/man1/ark.1*
-%lang(sr) %{_mandir}/sr/man1/ark.1*
-%lang(sv) %{_mandir}/sv/man1/ark.1*
-%lang(uk) %{_mandir}/uk/man1/ark.1*
 %{_datadir}/metainfo/org.kde.ark.appdata.xml
-%{_datadir}/mime/packages/kerfuffle.xml
