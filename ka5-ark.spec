@@ -1,21 +1,38 @@
-%define		kdeappsver	18.04.0
-%define		qtver		5.3.2
+%define		kdeappsver	18.12.0
+%define		qtver		5.9.0
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	18.04.0
+Version:	18.12.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	08c0d389041ac428dce7700a5c3b41fe
+# Source0-md5:	54946702f3254fe1cae106f56b6ad49e
 Patch0:		unique_ptr.patch
 URL:		http://www.kde.org/
+BuildRequires:	Qt5Concurrent-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel
+BuildRequires:	Qt5Widgets-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	cmake >= 2.8.12
-BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
-BuildRequires:	libarchive-devel
+BuildRequires:	gettext-devel
+BuildRequires:	kf5-extra-cmake-modules >= 5.53.0
+BuildRequires:	kf5-karchive-devel >= 5.38.0
+BuildRequires:	kf5-kconfig-devel >= 5.38.0
+BuildRequires:	kf5-kcrash-devel >= 5.38.0
+BuildRequires:	kf5-kdbusaddons-devel >= 5.38.0
+BuildRequires:	kf5-kdoctools-devel >= 5.38.0
+BuildRequires:	kf5-ki18n-devel >= 5.38.0
+BuildRequires:	kf5-kiconthemes-devel >= 5.38.0
+BuildRequires:	kf5-kio-devel >= 5.38.0
+BuildRequires:	kf5-kitemmodels-devel >= 5.38.0
+BuildRequires:	kf5-kparts-devel >= 5.38.0
+BuildRequires:	kf5-kpty-devel >= 5.38.0
+BuildRequires:	kf5-kservice-devel >= 5.38.0
+BuildRequires:	kf5-kwidgetsaddons-devel >= 5.38.0
+BuildRequires:	libarchive-devel >= 3.2.0
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
@@ -87,3 +104,4 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kxmlgui5/ark
 %{_datadir}/kxmlgui5/ark/ark_viewer.rc
 %{_datadir}/metainfo/org.kde.ark.appdata.xml
+%{_datadir}/mime/packages/kerfuffle.xml
