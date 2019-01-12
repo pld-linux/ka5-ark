@@ -1,14 +1,14 @@
-%define		kdeappsver	18.12.0
+%define		kdeappsver	18.12.1
 %define		qtver		5.9.0
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	18.12.0
+Version:	18.12.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	54946702f3254fe1cae106f56b6ad49e
+# Source0-md5:	13aea1292b69f59391573767d537d7af
 Patch0:		unique_ptr.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
@@ -33,6 +33,7 @@ BuildRequires:	kf5-kpty-devel >= 5.38.0
 BuildRequires:	kf5-kservice-devel >= 5.38.0
 BuildRequires:	kf5-kwidgetsaddons-devel >= 5.38.0
 BuildRequires:	libarchive-devel >= 3.2.0
+BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
@@ -55,14 +56,14 @@ modify archives.
 install -d build
 cd build
 %cmake \
+	-G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	..
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} -C build install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{kaname} --all-name --with-kde
 
@@ -105,3 +106,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kxmlgui5/ark/ark_viewer.rc
 %{_datadir}/metainfo/org.kde.ark.appdata.xml
 %{_datadir}/mime/packages/kerfuffle.xml
+%lang(ca) %{_mandir}/ca/man1/ark.1*
+%lang(de) %{_mandir}/de/man1/ark.1*
+%lang(es) %{_mandir}/es/man1/ark.1*
+%lang(fr) %{_mandir}/fr/man1/ark.1*
+%lang(gl) %{_mandir}/gl/man1/ark.1*
+%lang(it) %{_mandir}/it/man1/ark.1*
+%lang(C) %{_mandir}/man1/ark.1*
+%lang(nl) %{_mandir}/nl/man1/ark.1*
+%lang(pt) %{_mandir}/pt/man1/ark.1*
+%lang(pt_BR) %{_mandir}/pt_BR/man1/ark.1*
+%lang(sr) %{_mandir}/sr/man1/ark.1*
+%lang(sv) %{_mandir}/sv/man1/ark.1*
+%lang(uk) %{_mandir}/uk/man1/ark.1*
