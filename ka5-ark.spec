@@ -1,14 +1,14 @@
-%define		kdeappsver	18.12.1
+%define		kdeappsver	19.04.1
 %define		qtver		5.9.0
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	18.12.1
+Version:	19.04.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	13aea1292b69f59391573767d537d7af
+# Source0-md5:	8850f64c6c4374e5973804d8cb029758
 Patch0:		unique_ptr.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
@@ -33,13 +33,18 @@ BuildRequires:	kf5-kpty-devel >= 5.38.0
 BuildRequires:	kf5-kservice-devel >= 5.38.0
 BuildRequires:	kf5-kwidgetsaddons-devel >= 5.38.0
 BuildRequires:	libarchive-devel >= 3.2.0
+BuildRequires:	lrzip
+BuildRequires:	lzop
 BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
+BuildRequires:	rar
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	unrar
 BuildRequires:	xz-devel
 BuildRequires:	zlib-devel
+BuildRequires:	zstd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,6 +62,7 @@ install -d build
 cd build
 %cmake \
 	-G Ninja \
+	-DHTML_INSTALL_DIR=%{_kdedocdir} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	..
 %ninja_build
@@ -65,6 +71,7 @@ cd build
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
+rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/sr
 %find_lang %{kaname} --all-name --with-kde
 
 %clean
@@ -77,8 +84,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 /etc/xdg/ark.categories
 %attr(755,root,root) %{_bindir}/ark
-%ghost %{_libdir}/libkerfuffle.so.18
-%{_libdir}/libkerfuffle.so.18.*.*
+%ghost %{_libdir}/libkerfuffle.so.19
+%{_libdir}/libkerfuffle.so.19.*.*
 %{_libdir}/qt5/plugins/arkpart.so
 %dir %{_libdir}/qt5/plugins/kerfuffle
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_cli7z.so
