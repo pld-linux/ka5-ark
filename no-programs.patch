@@ -1,0 +1,47 @@
+--- ark-19.04.1/plugins/clirarplugin/CMakeLists.txt~	2019-05-05 12:43:24.000000000 +0200
++++ ark-19.04.1/plugins/clirarplugin/CMakeLists.txt	2019-05-16 07:18:19.440090472 +0200
+@@ -24,17 +24,3 @@
+ 
+ set(SUPPORTED_ARK_MIMETYPES "${SUPPORTED_ARK_MIMETYPES}${SUPPORTED_CLIRAR_MIMETYPES}" PARENT_SCOPE)
+ set(INSTALLED_KERFUFFLE_PLUGINS "${INSTALLED_KERFUFFLE_PLUGINS}kerfuffle_clirar;" PARENT_SCOPE)
+-
+-find_program(UNRAR unrar)
+-if(UNRAR)
+-    message(STATUS "Found unrar executable: ${UNRAR}")
+-else()
+-    message(WARNING "Could not find the unrar executable. Ark requires unrar or unar to extract RAR archives.")
+-endif()
+-
+-find_program(RAR rar)
+-if(RAR)
+-    message(STATUS "Found rar executable: ${RAR}")
+-else()
+-    message(WARNING "Could not find the rar executable. Ark won't be able to create or edit RAR archives.")
+-endif()
+--- ark-19.04.1/plugins/libarchive/CMakeLists.txt~	2019-05-05 12:43:24.000000000 +0200
++++ ark-19.04.1/plugins/libarchive/CMakeLists.txt	2019-05-16 07:19:27.198959602 +0200
+@@ -86,24 +86,3 @@
+ 
+ set(SUPPORTED_ARK_MIMETYPES "${SUPPORTED_ARK_MIMETYPES}${SUPPORTED_LIBARCHIVE_READWRITE_MIMETYPES}${SUPPORTED_LIBARCHIVE_READONLY_MIMETYPES}" PARENT_SCOPE)
+ set(INSTALLED_KERFUFFLE_PLUGINS "${INSTALLED_KERFUFFLE_PLUGINS}${INSTALLED_LIBARCHIVE_PLUGINS}" PARENT_SCOPE)
+-
+-find_program(LRZIP lrzip)
+-if(LRZIP)
+-    message(STATUS "Found lrzip executable: ${LRZIP}")
+-else()
+-    message(WARNING "Could not find the lrzip executable. Ark requires lrzip to handle the tar.lrz archive format.")
+-endif()
+-
+-find_program(LZOP lzop)
+-if(LZOP)
+-    message(STATUS "Found lzop executable: ${LZOP}")
+-else()
+-    message(WARNING "Could not find the lzop executable. Ark requires lzop to handle the tar.lzo archive format if libarchive >= 3.3 has been compiled without liblzo2 support.")
+-endif()
+-
+-find_program(ZSTD zstd)
+-if(ZSTD)
+-    message(STATUS "Found zstd executable: ${ZSTD}")
+-else()
+-    message(WARNING "Could not find the zstd executable. Ark requires zstd to handle the tar.zst archive format if libarchive >= 3.3.3 has been compiled without libzstd support.")
+-endif()

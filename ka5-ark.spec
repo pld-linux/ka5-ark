@@ -10,6 +10,7 @@ Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
 # Source0-md5:	8850f64c6c4374e5973804d8cb029758
 Patch0:		unique_ptr.patch
+Patch1:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
@@ -33,18 +34,18 @@ BuildRequires:	kf5-kpty-devel >= 5.38.0
 BuildRequires:	kf5-kservice-devel >= 5.38.0
 BuildRequires:	kf5-kwidgetsaddons-devel >= 5.38.0
 BuildRequires:	libarchive-devel >= 3.2.0
-BuildRequires:	lrzip
-BuildRequires:	lzop
 BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
-BuildRequires:	rar
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	unrar
 BuildRequires:	xz-devel
 BuildRequires:	zlib-devel
-BuildRequires:	zstd
+Suggests:	lrzip
+Suggests:	lzop
+Suggests:	rar
+Suggests:	unrar
+Suggests:	zstd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -56,6 +57,7 @@ modify archives.
 %prep
 %setup -q -n %{kaname}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 install -d build
