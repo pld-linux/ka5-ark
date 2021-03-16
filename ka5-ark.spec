@@ -1,16 +1,15 @@
-%define		kdeappsver	19.04.1
+%define		kdeappsver	20.12.3
 %define		qtver		5.9.0
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	19.04.1
+Version:	20.12.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	8850f64c6c4374e5973804d8cb029758
-Patch0:		unique_ptr.patch
-Patch1:		no-programs.patch
+Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	2c66407bf2c1349bb4e031d20d3223d4
+Patch0:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
@@ -57,7 +56,6 @@ modify archives.
 %prep
 %setup -q -n %{kaname}-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 install -d build
@@ -84,11 +82,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-/etc/xdg/ark.categories
 %attr(755,root,root) %{_bindir}/ark
-%ghost %{_libdir}/libkerfuffle.so.19
-%{_libdir}/libkerfuffle.so.19.*.*
 %{_libdir}/qt5/plugins/arkpart.so
+%attr(755,root,root) %ghost %{_libdir}/libkerfuffle.so.20
+%attr(755,root,root) %{_libdir}/libkerfuffle.so.20.*.*
 %dir %{_libdir}/qt5/plugins/kerfuffle
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_cli7z.so
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_clirar.so
@@ -114,7 +111,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kxmlgui5/ark
 %{_datadir}/kxmlgui5/ark/ark_viewer.rc
 %{_datadir}/metainfo/org.kde.ark.appdata.xml
-%{_datadir}/mime/packages/kerfuffle.xml
 %lang(ca) %{_mandir}/ca/man1/ark.1*
 %lang(de) %{_mandir}/de/man1/ark.1*
 %lang(es) %{_mandir}/es/man1/ark.1*
@@ -128,3 +124,4 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sr) %{_mandir}/sr/man1/ark.1*
 %lang(sv) %{_mandir}/sv/man1/ark.1*
 %lang(uk) %{_mandir}/uk/man1/ark.1*
+%{_datadir}/qlogging-categories5/ark.categories
