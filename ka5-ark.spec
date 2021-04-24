@@ -1,14 +1,14 @@
-%define		kdeappsver	20.12.3
+%define		kdeappsver	21.04.0
 %define		qtver		5.9.0
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	20.12.3
+Version:	21.04.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	2c66407bf2c1349bb4e031d20d3223d4
+# Source0-md5:	2a47cd1f2da6b726472cac8386ec7616
 Patch0:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
@@ -84,8 +84,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
 %{_libdir}/qt5/plugins/arkpart.so
-%attr(755,root,root) %ghost %{_libdir}/libkerfuffle.so.20
-%attr(755,root,root) %{_libdir}/libkerfuffle.so.20.*.*
+%ghost %{_libdir}/libkerfuffle.so.21
+%attr(755,root,root) %{_libdir}/libkerfuffle.so.*.*.*
 %dir %{_libdir}/qt5/plugins/kerfuffle
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_cli7z.so
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_clirar.so
@@ -108,8 +108,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/scalable/apps/ark.svgz
 %{_datadir}/kservices5/ark_part.desktop
 %{_datadir}/kservicetypes5/kerfufflePlugin.desktop
-%dir %{_datadir}/kxmlgui5/ark
-%{_datadir}/kxmlgui5/ark/ark_viewer.rc
 %{_datadir}/metainfo/org.kde.ark.appdata.xml
 %lang(ca) %{_mandir}/ca/man1/ark.1*
 %lang(de) %{_mandir}/de/man1/ark.1*
