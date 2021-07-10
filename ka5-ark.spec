@@ -53,6 +53,12 @@ for multiple formats, including tar, gzip, bzip2, rar and zip, as well
 as CD-ROM images. Ark can be used to browse, extract, create, and
 modify archives.
 
+%description -l pl.UTF-8
+Ark jest graficznym programem użytkowym do kompresji/dekompresji plików
+w wielu formatach, np. tar, gzip, bzip2, rar i zip, jak i obrazów CD-ROMów.
+Ark może być wykorzystywany do przeglądania, rozpakowywania, tworzenia
+i modyfikowania archiwów.
+
 %prep
 %setup -q -n %{kaname}-%{version}
 %patch0 -p1
