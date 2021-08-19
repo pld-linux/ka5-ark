@@ -1,14 +1,14 @@
-%define		kdeappsver	21.04.3
+%define		kdeappsver	21.08.0
 %define		qtver		5.9.0
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	21.04.3
+Version:	21.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	4f6fef5a7d2e2730fad4f8d6193912fc
+# Source0-md5:	dc58af57fa3cf6f32076ad44d2f5c36f
 Patch0:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
@@ -54,10 +54,10 @@ as CD-ROM images. Ark can be used to browse, extract, create, and
 modify archives.
 
 %description -l pl.UTF-8
-Ark jest graficznym programem użytkowym do kompresji/dekompresji plików
-w wielu formatach, np. tar, gzip, bzip2, rar i zip, jak i obrazów CD-ROMów.
-Ark może być wykorzystywany do przeglądania, rozpakowywania, tworzenia
-i modyfikowania archiwów.
+Ark jest graficznym programem użytkowym do kompresji/dekompresji
+plików w wielu formatach, np. tar, gzip, bzip2, rar i zip, jak i
+obrazów CD-ROMów. Ark może być wykorzystywany do przeglądania,
+rozpakowywania, tworzenia i modyfikowania archiwów.
 
 %prep
 %setup -q -n %{kaname}-%{version}
@@ -89,7 +89,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
-%{_libdir}/qt5/plugins/arkpart.so
 %ghost %{_libdir}/libkerfuffle.so.21
 %attr(755,root,root) %{_libdir}/libkerfuffle.so.*.*.*
 %dir %{_libdir}/qt5/plugins/kerfuffle
@@ -129,3 +128,5 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sv) %{_mandir}/sv/man1/ark.1*
 %lang(uk) %{_mandir}/uk/man1/ark.1*
 %{_datadir}/qlogging-categories5/ark.categories
+%{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libzstd.so
+%{_libdir}/qt5/plugins/kf5/parts/arkpart.so
