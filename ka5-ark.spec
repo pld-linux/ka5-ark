@@ -1,14 +1,14 @@
-%define		kdeappsver	21.12.1
+%define		kdeappsver	21.12.2
 %define		qtver		5.9.0
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	21.12.1
+Version:	21.12.2
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	ee0fc036d48aa316c2f30226b8c19f8d
+# Source0-md5:	aef15ae4f2482e921cabaccb8389b1dc
 Patch0:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
