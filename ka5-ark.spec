@@ -36,6 +36,7 @@ BuildRequires:	kf5-kpty-devel >= 5.38.0
 BuildRequires:	kf5-kservice-devel >= 5.38.0
 BuildRequires:	kf5-kwidgetsaddons-devel >= 5.38.0
 BuildRequires:	libarchive-devel >= 3.2.0
+BuildRequires:	libzip-devel
 BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
