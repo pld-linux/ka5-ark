@@ -1,17 +1,17 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.08.3
+%define		kdeappsver	22.12.0
 %define		qtver		5.15.2
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	22.08.3
+Version:	22.12.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	a70d16baab9c8efef6fc9b1f7fd45372
+# Source0-md5:	ed3adc1d14e78d0c4afb92384a64992c
 Patch0:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
@@ -98,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
+/etc/xdg/arkrc
 %attr(755,root,root) %{_bindir}/ark
 %ghost %{_libdir}/libkerfuffle.so.22
 %attr(755,root,root) %{_libdir}/libkerfuffle.so.*.*.*
@@ -108,9 +109,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_clizip.so
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libarchive.so
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libarchive_readonly.so
-%{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libbz2.so
-%{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libgz.so
-%{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libxz.so
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libzip.so
 %{_libdir}/qt5/plugins/kf5/kfileitemaction/compressfileitemaction.so
 %{_libdir}/qt5/plugins/kf5/kfileitemaction/extractfileitemaction.so
@@ -121,8 +119,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/48x48/apps/ark.png
 %{_iconsdir}/hicolor/64x64/apps/ark.png
 %{_iconsdir}/hicolor/scalable/apps/ark.svgz
-%{_datadir}/kservices5/ark_part.desktop
-%{_datadir}/kservicetypes5/kerfufflePlugin.desktop
 %{_datadir}/metainfo/org.kde.ark.appdata.xml
 %lang(ca) %{_mandir}/ca/man1/ark.1*
 %lang(de) %{_mandir}/de/man1/ark.1*
@@ -138,5 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sv) %{_mandir}/sv/man1/ark.1*
 %lang(uk) %{_mandir}/uk/man1/ark.1*
 %{_datadir}/qlogging-categories5/ark.categories
-%{_libdir}/qt5/plugins/kerfuffle/kerfuffle_libzstd.so
 %{_libdir}/qt5/plugins/kf5/parts/arkpart.so
+%{_libdir}/qt5/plugins/kerfuffle/kerfuffle_cliarj.so
+%{_datadir}/kconf_update/ark.upd
+%attr(755,root,root) %{_datadir}/kconf_update/ark_add_hamburgermenu_to_toolbar.sh
