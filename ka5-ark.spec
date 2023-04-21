@@ -1,17 +1,17 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.12.3
+%define		kdeappsver	23.04.0
 %define		qtver		5.15.2
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	22.12.3
-Release:	2
+Version:	23.04.0
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	bfa072e7e83ccca57a88ebe6fb5d090d
+# Source0-md5:	7d3843f46cdcaa0cc46ff4412f038611
 Patch0:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
@@ -101,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 /etc/xdg/arkrc
 %attr(755,root,root) %{_bindir}/ark
-%ghost %{_libdir}/libkerfuffle.so.22
+%ghost %{_libdir}/libkerfuffle.so.23
 %attr(755,root,root) %{_libdir}/libkerfuffle.so.*.*.*
 %dir %{_libdir}/qt5/plugins/kerfuffle
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_cli7z.so

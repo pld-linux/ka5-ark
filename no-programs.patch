@@ -1,8 +1,9 @@
---- ark-19.04.1/plugins/clirarplugin/CMakeLists.txt~	2019-05-05 12:43:24.000000000 +0200
-+++ ark-19.04.1/plugins/clirarplugin/CMakeLists.txt	2019-05-16 07:18:19.440090472 +0200
-@@ -24,17 +24,3 @@
+diff -up ark-23.04.0/plugins/clirarplugin/CMakeLists.txt.orig ark-23.04.0/plugins/clirarplugin/CMakeLists.txt
+--- ark-23.04.0/plugins/clirarplugin/CMakeLists.txt.orig	2023-04-12 18:14:03.000000000 +0200
++++ ark-23.04.0/plugins/clirarplugin/CMakeLists.txt	2023-04-21 14:18:32.206159901 +0200
+@@ -17,17 +17,3 @@ set(SUPPORTED_ARK_MIMETYPES "${SUPPORTED
+ kerfuffle_add_plugin(kerfuffle_clirar ${kerfuffle_clirar_SRCS})
  
- set(SUPPORTED_ARK_MIMETYPES "${SUPPORTED_ARK_MIMETYPES}${SUPPORTED_CLIRAR_MIMETYPES}" PARENT_SCOPE)
  set(INSTALLED_KERFUFFLE_PLUGINS "${INSTALLED_KERFUFFLE_PLUGINS}kerfuffle_clirar;" PARENT_SCOPE)
 -
 -find_program(UNRAR unrar)
@@ -18,11 +19,12 @@
 -else()
 -    message(WARNING "Could not find the rar executable. Ark won't be able to create or edit RAR archives.")
 -endif()
---- ark-19.04.1/plugins/libarchive/CMakeLists.txt~	2019-05-05 12:43:24.000000000 +0200
-+++ ark-19.04.1/plugins/libarchive/CMakeLists.txt	2019-05-16 07:19:27.198959602 +0200
-@@ -86,24 +86,3 @@
+diff -up ark-23.04.0/plugins/libarchive/CMakeLists.txt.orig ark-23.04.0/plugins/libarchive/CMakeLists.txt
+--- ark-23.04.0/plugins/libarchive/CMakeLists.txt.orig	2023-04-12 18:14:03.000000000 +0200
++++ ark-23.04.0/plugins/libarchive/CMakeLists.txt	2023-04-21 14:19:37.662623565 +0200
+@@ -48,24 +48,3 @@ set(INSTALLED_LIBARCHIVE_PLUGINS "${INST
+ set(INSTALLED_LIBARCHIVE_PLUGINS "${INSTALLED_LIBARCHIVE_PLUGINS}kerfuffle_libarchive;")
  
- set(SUPPORTED_ARK_MIMETYPES "${SUPPORTED_ARK_MIMETYPES}${SUPPORTED_LIBARCHIVE_READWRITE_MIMETYPES}${SUPPORTED_LIBARCHIVE_READONLY_MIMETYPES}" PARENT_SCOPE)
  set(INSTALLED_KERFUFFLE_PLUGINS "${INSTALLED_KERFUFFLE_PLUGINS}${INSTALLED_LIBARCHIVE_PLUGINS}" PARENT_SCOPE)
 -
 -find_program(LRZIP lrzip)
