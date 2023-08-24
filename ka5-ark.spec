@@ -1,17 +1,17 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	23.04.3
+%define		kdeappsver	23.08.0
 %define		qtver		5.15.2
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	23.04.3
+Version:	23.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	2aa1bd29ba03b8e080e8e434f93466b7
+# Source0-md5:	82c23d205843d4384c3323d40491faa8
 Patch0:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
@@ -19,7 +19,7 @@ BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel
 BuildRequires:	Qt5Widgets-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	cmake >= 2.8.12
+BuildRequires:	cmake >= 3.20
 BuildRequires:	gettext-devel
 BuildRequires:	kf5-extra-cmake-modules >= 5.53.0
 BuildRequires:	kf5-karchive-devel >= 5.38.0
@@ -68,18 +68,16 @@ rozpakowywania, tworzenia i modyfikowania archiwów.
 %patch0 -p1
 
 %build
-install -d build
-cd build
 %cmake \
+	-B build \
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DHTML_INSTALL_DIR=%{_kdedocdir} \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-	..
-%ninja_build
+	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+%ninja_build -C build
 
 %if %{with tests}
-ctest
+ctest --test-dir build
 %endif
 
 
@@ -139,3 +137,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/kerfuffle/kerfuffle_cliarj.so
 %{_datadir}/kconf_update/ark.upd
 %attr(755,root,root) %{_datadir}/kconf_update/ark_add_hamburgermenu_to_toolbar.sh
+%{_datadir}/kservices5/ark_part.desktop
