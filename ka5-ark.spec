@@ -1,17 +1,17 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	23.08.0
+%define		kdeappsver	23.08.1
 %define		qtver		5.15.2
 %define		kaname		ark
 Summary:	Ark
 Name:		ka5-%{kaname}
-Version:	23.08.0
+Version:	23.08.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	82c23d205843d4384c3323d40491faa8
+# Source0-md5:	3d2d22ec6d0608be852687aa4bdbdeb3
 Patch0:		no-programs.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Concurrent-devel
